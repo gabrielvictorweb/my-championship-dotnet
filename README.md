@@ -1,5 +1,11 @@
 # My Championship
 
+## Bibliotecas Instaladas
+
+- **FluentValidation.AspNetCore**: Biblioteca para validação de modelos no ASP.NET Core.
+
+## Sobre o Projeto
+
 My Championship é uma aplicação ASP.NET Core para gerenciar campeonatos. Este projeto utiliza Docker para facilitar a execução e o desenvolvimento.
 
 ## Pré-requisitos
