@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
     app:
+        container_name: my_championship_dotnet_app
         build:
             context: .
             dockerfile: Dockerfile
@@ -11,9 +12,10 @@ services:
             - ASPNETCORE_ENVIRONMENT=Development
         volumes:
             - .:/app
-            - /app/node_modules
         depends_on:
             - db
+        networks:
+            - app_my_championship_dotnet_network
 
     db:
         image: postgres:latest
@@ -26,6 +28,11 @@ services:
             POSTGRES_DB: "my_championship"
         volumes:
             - postgresdata:/var/lib/postgresql/data
+        networks:
+            - app_my_championship_dotnet_network
 
 volumes:
     postgresdata:
+
+networks:
+    app_my_championship_dotnet_network:

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/gabriel/Projects/my-championchip/my-championship.csproj": {}
+    "/app/my-championship.csproj": {}
   },
   "projects": {
-    "/home/gabriel/Projects/my-championchip/my-championship.csproj": {
+    "/app/my-championship.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/gabriel/Projects/my-championchip/my-championship.csproj",
+        "projectUniqueName": "/app/my-championship.csproj",
         "projectName": "my-championship",
-        "projectPath": "/home/gabriel/Projects/my-championchip/my-championship.csproj",
-        "packagesPath": "/home/gabriel/.nuget/packages/",
-        "outputPath": "/home/gabriel/Projects/my-championchip/obj/",
+        "projectPath": "/app/my-championship.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/app/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/gabriel/.nuget/NuGet/NuGet.Config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -86,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/gabriel/dotnet/sdk/9.0.309/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.310/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
