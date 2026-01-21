@@ -1,7 +1,8 @@
 using System;
 using System.Threading.Tasks;
+using my_championship.Domain.Entities; // Updated to use the correct Championship type
 
-namespace Mychampionship.Domain.UseCases
+namespace my_championship.Domain.UseCases
 {
     public class SaveChampionship
     {
@@ -29,12 +30,5 @@ namespace Mychampionship.Domain.UseCases
             Console.WriteLine($"Saving championship: {championship.Name}");
             return Task.CompletedTask;
         }
-    }
-
-    public class Championship
-    {
-        public string Name { get; set; }
-        public DateTime Date { get; set; }
-        public string Location { get; set; }
     }
 }

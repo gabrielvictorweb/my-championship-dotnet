@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using my_championship.Application.DTOs;
 using my_championship.Domain.Entities;
 using my_championship.Infrastructure.Data;
+using my_championship.Domain.UseCases;
 
 namespace my_championship.Controllers;
 
@@ -9,11 +10,11 @@ namespace my_championship.Controllers;
 [Route("championship")]
 public class SaveChampionshipsController : ControllerBase
 {
-    private readonly AppDbContext _context;
+    private readonly SaveChampionship _saveChampionship;
 
-    public SaveChampionshipsController(AppDbContext context)
+    public SaveChampionshipsController(SaveChampionship saveChampionship)
     {
-        _context = context;
+        _saveChampionship = saveChampionship;
     }
 
     [HttpPost]
@@ -26,8 +27,7 @@ public class SaveChampionshipsController : ControllerBase
             Location = dto.Location
         };
 
-        _context.Championships.Add(championship);
-        await _context.SaveChangesAsync();
+        await _saveChampionship.ExecuteAsync(championship);
 
         return CreatedAtAction(nameof(Create), championship);
     }
