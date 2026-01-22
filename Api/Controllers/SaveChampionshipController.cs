@@ -9,6 +9,7 @@ namespace my_championship.Controllers;
 [ApiController]
 [Route("championship")]
 [Tags("Championships")]
+[Produces("application/json")]
 public class SaveChampionshipsController : ControllerBase
 {
     private readonly SaveTeam _saveTeam;
@@ -24,6 +25,9 @@ public class SaveChampionshipsController : ControllerBase
     }
 
     [HttpPost]
+    [Consumes("application/json")]
+    [ProducesResponseType(typeof(ChampionshipPresenter), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Create(CreateChampionshipDto dto)
     {
         var championship = new Championship
