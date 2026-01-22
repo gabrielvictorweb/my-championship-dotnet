@@ -1,74 +1,155 @@
-# My Championship
+# 🏆 My Championship
 
-## Bibliotecas Instaladas
+## 📌 Sobre o Projeto
 
-- **FluentValidation.AspNetCore**: Biblioteca para validação de modelos no ASP.NET Core.
+**My Championship** é uma aplicação **ASP.NET Core** desenvolvida para **cadastro de campeonatos**, **gerenciamento de times** e **geração de chaves** de forma simples e organizada.
 
-## Sobre o Projeto
+O projeto segue boas práticas de arquitetura, separando claramente as responsabilidades entre **API**, **Application**, **Domain** e **Infrastructure**, além de utilizar **Docker** para facilitar o setup e a execução do ambiente.
 
-My Championship é uma aplicação ASP.NET Core para gerenciar campeonatos. Este projeto utiliza Docker para facilitar a execução e o desenvolvimento.
+---
 
-## Pré-requisitos
+## 📦 Bibliotecas Utilizadas
 
-- Docker instalado na máquina.
-- Docker Compose instalado.
+- **FluentValidation.AspNetCore**
+  Biblioteca utilizada para validação de dados de entrada (DTOs), garantindo regras claras e centralizadas.
 
-## Como executar a aplicação
+- **Entity Framework Core**
+  ORM utilizado para acesso e persistência de dados.
 
-1. Clone este repositório:
+- **Npgsql**
+  Provider do PostgreSQL para .NET.
 
-    ```bash
-    git clone <URL_DO_REPOSITORIO>
-    cd my-championchip
-    ```
+---
 
-2. Construa e inicie os containers com Docker Compose:
+## ⚙️ Pré-requisitos
 
-    ```bash
-    docker compose up --build
-    ```
+Antes de iniciar, certifique-se de ter instalado:
 
-3. Acesse a aplicação no navegador:
-    - HTTP: [http://localhost:5000](http://localhost:5000)
-    - HTTPS: [https://localhost:5001](https://localhost:5001) (se configurado corretamente)
+- Docker
+- Docker Compose
 
-4. Para parar os containers:
-    ```bash
-    docker compose down
-    ```
+---
 
-## Solução de Problemas
+## ▶️ Como Executar a Aplicação
 
-### Certificado HTTPS
+### 1️⃣ Clonar o repositório
 
-Se encontrar erros relacionados ao certificado HTTPS, você pode:
+```bash
+git clone <URL_DO_REPOSITORIO>
+cd my-championship
+```
 
-- Desabilitar HTTPS no ambiente de desenvolvimento (veja `Program.cs`).
-- Gerar um certificado HTTPS válido e montá-lo no container.
+### 2️⃣ Subir a aplicação com Docker Compose
 
-### Logs do Container
+```bash
+docker compose up --build
+```
 
-Para verificar os logs do container:
+### 3️⃣ Acessar a aplicação
+
+- **HTTP**: [http://localhost:5000](http://localhost:5000)
+- **HTTPS**: [https://localhost:5001](https://localhost:5001) _(caso esteja configurado)_
+
+### 4️⃣ Parar a aplicação
+
+```bash
+docker compose down
+```
+
+---
+
+## 🧪 Documentação da API (Swagger)
+
+Em ambiente de desenvolvimento, a API expõe o **Swagger UI**, onde é possível visualizar e testar os endpoints.
+
+Acesse em:
+
+```
+http://localhost:5000/swagger
+```
+
+---
+
+## 🗂️ Estrutura do Projeto
+
+```text
+my_championship
+├── Api/              # Controllers, Presenters e camada de apresentação
+├── Application/      # Casos de uso, DTOs e validações
+├── Domain/           # Entidades e regras de negócio
+├── Infrastructure/   # Banco de dados, repositórios e configurações
+```
+
+---
+
+## 🗄️ Migrations (Entity Framework)
+
+### Criar uma nova migration
+
+```bash
+dotnet ef migrations add <NomeDaMigration>
+```
+
+Exemplo:
+
+```bash
+dotnet ef migrations add CreateChampionshipTables
+```
+
+### Aplicar migrations no banco
+
+```bash
+dotnet ef database update
+```
+
+---
+
+## 🔧 Configuração do dotnet-ef
+
+Caso ainda não tenha o `dotnet-ef` instalado:
+
+```bash
+dotnet tool install --global dotnet-ef
+```
+
+Se estiver usando Linux ou containers, garanta que o caminho esteja no `PATH`:
+
+```bash
+export PATH="$PATH:/root/.dotnet/tools"
+```
+
+---
+
+## 🛠️ Solução de Problemas
+
+### 🔒 Erros com HTTPS / Certificado
+
+Se ocorrerem erros relacionados a HTTPS, você pode:
+
+- Desabilitar HTTPS no ambiente de desenvolvimento (`Program.cs`)
+- Gerar e configurar um certificado HTTPS válido no container
+
+---
+
+### 📄 Ver logs do container
 
 ```bash
 docker logs my_championship_dotnet_app
 ```
 
-### Acessar o Container
+---
 
-Para acessar o terminal do container:
+### 🖥️ Acessar o terminal do container
 
 ```bash
 docker exec -it my_championship_dotnet_app sh
 ```
 
-## Estrutura do Projeto
+---
 
-- **Api/**: Contém os controladores da API.
-- **Application/**: Contém os casos de uso e interfaces.
-- **Domain/**: Contém as entidades do domínio.
-- **Infrastructure/**: Contém a configuração do banco de dados e outras implementações.
+## 📜 Licença
 
-## Licença
+Este projeto está licenciado sob a **Licença MIT**.
+Consulte o arquivo `LICENSE` para mais detalhes.
 
-Este projeto está licenciado sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+---
