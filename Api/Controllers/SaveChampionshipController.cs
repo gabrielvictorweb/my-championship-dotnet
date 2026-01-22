@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using my_championship.Application.DTOs;
 using my_championship.Domain.Entities;
-using my_championship.Infrastructure.Data;
 using my_championship.Application.UseCases;
 using my_championship.Api.Presenters;
 
@@ -9,6 +8,7 @@ namespace my_championship.Controllers;
 
 [ApiController]
 [Route("championship")]
+[Tags("Championships")]
 public class SaveChampionshipsController : ControllerBase
 {
     private readonly SaveTeam _saveTeam;
