@@ -11,6 +11,8 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<Championship> Championships => Set<Championship>();
+    public DbSet<Team> Teams => Set<Team>();
+    public DbSet<TeamKey> TeamKeys => Set<TeamKey>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

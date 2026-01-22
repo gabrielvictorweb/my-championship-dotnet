@@ -5,4 +5,5 @@ public class Championship
     public Guid Id { get; set; }
     public required string Name { get; set; }
     public required string Location { get; set; }
+    public ICollection<Team> Teams { get; set; } = new List<Team>();
 }

@@ -3,33 +3,56 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using my_championship.Application.Validators;
 using my_championship.Infrastructure.Data;
+using my_championship.Application.UseCases;
+using my_championship.Infrastructure.Repositories;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>());
+// Controllers + JSON + FluentValidation
+builder.Services.AddControllers()
+    .AddFluentValidation(fv =>
+        fv.RegisterValidatorsFromAssemblyContaining<CreateChampionshipValidator>()
+    )
+    .AddJsonOptions(options =>
+    {
+        // 🔥 CORREÇÃO PRINCIPAL
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 
-// Register Dtos
-builder.Services.AddValidatorsFromAssemblyContaining<CreateChampionshipValidator>();
+        // Opcional (pode remover em produção)
+        options.JsonSerializerOptions.WriteIndented = true;
+    });
 
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+// Swagger / OpenAPI
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(
         builder.Configuration.GetConnectionString("DefaultConnection")
     )
 );
 
-// Configure Kestrel to use specific ports
+// Kestrel
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.ListenAnyIP(5000); // HTTP port
+    options.ListenAnyIP(5000); // HTTP
 });
+
+// Repositories
+builder.Services.AddScoped<ChampionshipRepository>();
+builder.Services.AddScoped<TeamRepository>();
+builder.Services.AddScoped<TeamKeyRepository>();
+
+// Use cases
+builder.Services.AddScoped<SaveChampionship>();
+builder.Services.AddScoped<SaveTeam>();
+builder.Services.AddScoped<SaveTeamKey>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using my_championship.Domain.Entities;
 using my_championship.Infrastructure.Repositories; // Added for ChampionshipRepository
 
-namespace my_championship.Domain.UseCases
+namespace my_championship.Application.UseCases
 {
     public class SaveChampionship
     {

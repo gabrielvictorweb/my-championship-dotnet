@@ -32,6 +32,7 @@ public class ChampionshipRepository
     public async Task UpdateAsync(Championship championship)
     {
         _dbContext.Championships.Update(championship);
+
         await _dbContext.SaveChangesAsync();
     }
 
@@ -41,6 +42,7 @@ public class ChampionshipRepository
         if (championship != null)
         {
             _dbContext.Championships.Remove(championship);
+
             await _dbContext.SaveChangesAsync();
         }
     }

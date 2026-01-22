@@ -27,7 +27,7 @@ services:
             POSTGRES_PASSWORD: "postgres"
             POSTGRES_DB: "my_championship"
         volumes:
-            - postgresdata:/var/lib/postgresql/data
+            - postgresdata:/var/lib/postgresql
         networks:
             - app_my_championship_dotnet_network
 

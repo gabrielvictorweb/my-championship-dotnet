@@ -2,6 +2,10 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build-env
 WORKDIR /app
 
+# Install dotnet-ef tool globally
+RUN dotnet tool install --global dotnet-ef \
+    && export PATH="$PATH:/root/.dotnet/tools"
+
 # Copy csproj and restore as distinct layers
 COPY *.sln ./
 COPY my-championship.csproj ./
